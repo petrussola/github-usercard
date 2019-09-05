@@ -54,11 +54,59 @@ const followersArray = [];
 
 */
 
-function cardBuilder(cardInfo) {
-  const card = document.createElement('div').classList.add('card');
+function cardBuilder(data) {
+  // create card elements
+  const card = document.createElement('div');
+  card.classList.add('card');
+
+  const userImage = document.createElement('img');
+  // need to set src when I have it!
+  userImage.setAttribute('src', '{image url of user}');
+  card.appendChild(userImage);
+  
+  const cardInfo = document.createElement('div');
+  cardInfo.classList.add('card-info');
+  card.appendChild(cardInfo);
+  
+  const usersName = document.createElement('h3');
+  usersName.classList.add('name')
+  usersName.textContent = '{users name}';
+  cardInfo.appendChild(usersName);
+  
+  const usersUserName = document.createElement('p');
+  usersUserName.classList.add('username')
+  usersUserName.textContent = '{users user name}';
+  cardInfo.appendChild(usersUserName);
+  
+  const userLocation = document.createElement('p');
+  userLocation.textContent = 'Location: {users location}';
+  cardInfo.appendChild(userLocation);
+  
+  const profile = document.createElement('p');
+  profile.textContent = 'Profile:';
+  cardInfo.appendChild(profile);
+  
+  const githubPage = document.createElement('a');
+  githubPage.setAttribute('href', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise');
+  profile.appendChild(githubPage);
+  
+  const followers = document.createElement('p');
+  followers.textContent = 'Followers: {users followers count}:';
+  cardInfo.appendChild(followers);
+  
+  const following = document.createElement('p');
+  following.textContent = 'Following: {users following count}:';
+  cardInfo.appendChild(following);
+  
+  const bio = document.createElement('p');
+  bio.textContent = 'Bio: {users bio}:';
+  cardInfo.appendChild(bio);
+
+  return card; 
+
 }
 
-console.log(cardBuilder);
+console.log(cardBuilder());
 
 /* List of LS Instructors Github username's: 
   tetondan
