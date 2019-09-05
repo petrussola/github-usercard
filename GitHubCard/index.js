@@ -6,6 +6,7 @@
 axios.get('https://api.github.com/users/petrussola')
   .then( data => {
     // debugger
+    console.log(data);
   })
   .catch( error => {
     // debugger
@@ -54,14 +55,14 @@ const followersArray = [];
 
 */
 
-function cardBuilder(data) {
+function cardBuilder(userData) {
   // create card elements
   const card = document.createElement('div');
   card.classList.add('card');
 
   const userImage = document.createElement('img');
   // need to set src when I have it!
-  userImage.setAttribute('src', '{image url of user}');
+  userImage.setAttribute('src', userData.avatar_url);
   card.appendChild(userImage);
   
   const cardInfo = document.createElement('div');
@@ -70,44 +71,41 @@ function cardBuilder(data) {
   
   const usersName = document.createElement('h3');
   usersName.classList.add('name')
-  usersName.textContent = '{users name}';
+  usersName.textContent = userData.name;
   cardInfo.appendChild(usersName);
   
   const usersUserName = document.createElement('p');
   usersUserName.classList.add('username')
-  usersUserName.textContent = '{users user name}';
+  usersUserName.textContent = userData.login;
   cardInfo.appendChild(usersUserName);
   
   const userLocation = document.createElement('p');
-  userLocation.textContent = 'Location: {users location}';
+  userLocation.textContent = userData.location;
   cardInfo.appendChild(userLocation);
   
   const profile = document.createElement('p');
-  profile.textContent = 'Profile:';
+  profile.textContent = 'Profile: ';
   cardInfo.appendChild(profile);
   
   const githubPage = document.createElement('a');
-  githubPage.setAttribute('href', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise');
+  githubPage.setAttribute('href', userData.html_url);
+  githubPage.textContent = data.html_url;
   profile.appendChild(githubPage);
   
   const followers = document.createElement('p');
-  followers.textContent = 'Followers: {users followers count}:';
+  followers.textContent = `Followers: ${data.followers}`;
   cardInfo.appendChild(followers);
   
   const following = document.createElement('p');
-  following.textContent = 'Following: {users following count}:';
+  following.textContent = `Following: ${data.following}`;
   cardInfo.appendChild(following);
   
   const bio = document.createElement('p');
-  bio.textContent = 'Bio: {users bio}:';
+  bio.textContent = `Bio: ${data.bio}`;
   cardInfo.appendChild(bio);
 
   return card; 
-
 }
-
-console.log(cardBuilder());
-
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
