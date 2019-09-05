@@ -3,7 +3,17 @@
            https://api.github.com/users/<your name>
 */
 
-axios.get('https://lambda-github-api-server.herokuapp.com/')
+// axios.get('https://lambda-github-api-server.herokuapp.com/')
+
+
+axios({
+  method:'get',
+  url: 'https://api.github.com/users/petrussola',
+  auth: {
+      username: '*******',
+      password: '*******'
+  }
+})
   .then( data => {
     // debugger
     const container = document.querySelector(".cards");
