@@ -3,10 +3,12 @@
            https://api.github.com/users/<your name>
 */
 
-axios.get('https://api.github.com/users/petrussola')
+axios.get('https://lambda-github-api-server.herokuapp.com/')
   .then( data => {
     // debugger
-    console.log(data);
+    const container = document.querySelector(".cards");
+    const newCard = cardBuilder(data.data);
+    container.appendChild(newCard);
   })
   .catch( error => {
     // debugger
@@ -56,13 +58,13 @@ const followersArray = [];
 */
 
 function cardBuilder(userData) {
+  // debugger
   // create card elements
   const card = document.createElement('div');
   card.classList.add('card');
-
+  
   const userImage = document.createElement('img');
-  // need to set src when I have it!
-  userImage.setAttribute('src', userData.avatar_url);
+  userImage.src = userData.avatar_url;
   card.appendChild(userImage);
   
   const cardInfo = document.createElement('div');
@@ -89,23 +91,25 @@ function cardBuilder(userData) {
   
   const githubPage = document.createElement('a');
   githubPage.setAttribute('href', userData.html_url);
-  githubPage.textContent = data.html_url;
+  githubPage.textContent = userData.html_url;
   profile.appendChild(githubPage);
   
   const followers = document.createElement('p');
-  followers.textContent = `Followers: ${data.followers}`;
+  followers.textContent = `Followers: ${userData.followers}`;
   cardInfo.appendChild(followers);
   
   const following = document.createElement('p');
-  following.textContent = `Following: ${data.following}`;
+  following.textContent = `Following: ${userData.following}`;
   cardInfo.appendChild(following);
   
   const bio = document.createElement('p');
-  bio.textContent = `Bio: ${data.bio}`;
+  bio.textContent = `Bio: ${userData.bio}`;
   cardInfo.appendChild(bio);
 
   return card; 
 }
+
+
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
