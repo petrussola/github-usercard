@@ -5,24 +5,26 @@
 
 // axios.get('https://lambda-github-api-server.herokuapp.com/')
 
+const container = document.querySelector(".cards");
 
-axios({
-  method:'get',
-  url: 'https://api.github.com/users/petrussola',
-  auth: {
-      username: '*******',
-      password: '*******'
+function getData(follower) {
+  axios({
+    method:'get',
+    url: 'https://api.github.com/users/' + follower,
+    auth: {
+        username: '****',
+        password: '****'
+    }
+  })
+    .then( data => {
+      // debugger
+      const newCard = cardBuilder(data.data);
+      container.appendChild(newCard);
+    })
+    .catch( error => {
+      // debugger
+    })
   }
-})
-  .then( data => {
-    // debugger
-    const container = document.querySelector(".cards");
-    const newCard = cardBuilder(data.data);
-    container.appendChild(newCard);
-  })
-  .catch( error => {
-    // debugger
-  })
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -45,7 +47,10 @@ axios({
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['samuel-mpere', 'ifiokudoidiok', 'richanynguon', 'curm90'];
+followersArray.forEach( follower => {
+  getData(follower);
+})
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
