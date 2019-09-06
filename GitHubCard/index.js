@@ -12,7 +12,7 @@ function getData(follower) {
     method: 'get',
     url: 'https://api.github.com/users/' + follower,
     auth: {
-      username: 'petrussola',
+      username: '*******',
       password: '*****'
     }
   })
@@ -144,8 +144,8 @@ function addFollowersToArray(array) {
     method: 'get',
     url: 'https://api.github.com/users/petrussola/followers',
     auth: {
-      username: 'petrussola',
-      password: 'G1thyb 2yck2%'
+      username: '*******',
+      password: '*******'
     }
   })
     .then(data => {
